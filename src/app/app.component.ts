@@ -23,7 +23,12 @@ export class AppComponent implements OnInit{
     }
   }
   ngOnInit(){
+   
+  }
+  getSteps(){
+    
     if(this.miBandService)
     this.pedoStats=this.miBandService.getSteps();
+    
   }
 }

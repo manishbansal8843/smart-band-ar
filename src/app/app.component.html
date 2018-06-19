@@ -8,6 +8,10 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<ng-template #bleSupported>Pedometer reading is {{(pedoStats|async).steps}}</ng-template>
+<ng-template #bleSupported>
+  Pedometer reading is {{(pedoStats|async)?.steps}}
+  
+</ng-template>
+<button (click)='getSteps()'>Get Steps</button>
 
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {MiBand} from 'miband/src/miband';
+import * as MiBand from 'miband/src/miband';
 import { map, mergeMap } from 'rxjs/operators';
 import { from } from 'rxjs/observable/from';
 import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
@@ -23,6 +23,7 @@ export class MiBandService {
   }
    getSteps(){
     try {
+      console.log('calling getsteps');
       return (
         this.ble
 
@@ -36,6 +37,7 @@ export class MiBandService {
           .pipe(
             // 2) get that service
             mergeMap((gatt: BluetoothRemoteGATTServer) => {
+              console.log('Got the gatt server');
               this.miband = new MiBand(gatt);
                this.miband.init().then(result=>console.log('mi-band initialized'));
                return from(this.miband.getPedometerStats());
@@ -46,7 +48,7 @@ export class MiBandService {
           )
       );
     } catch (e) {
-      console.error('Oops! can not read value from %s');
+      console.error('Oops! can not read value from '+e);
     }
    }
 }
