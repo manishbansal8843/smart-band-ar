@@ -1,9 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<div class="bleNotSupported" *ngIf="bleNotSupported; else bleSupported">  
+  Your browser does not support Smart Bluetooth. See <a href='http://caniuse.com/#search=Bluetooth'>here</a> for more details.
+</div>
+
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
 </div>
-<div>Pedometer reading is {{(pedoStats|async).steps}}</div>
+<ng-template #bleSupported>Pedometer reading is {{(pedoStats|async).steps}}</ng-template>
 
 
