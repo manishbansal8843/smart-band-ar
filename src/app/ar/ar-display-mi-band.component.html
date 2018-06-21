@@ -1,0 +1,71 @@
+<div class='over-ar'>
+<button (click)='showAR=true'>AR Experience</button>
+<button (click)='showAR=false'>Hide AR Experience</button>
+</div>
+<a-scene stats embedded arjs='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' *ngIf='showAR' >
+ <!-- <a-assets>
+  <a-asset-item id="watch" src="/assets/model_clock.dae"></a-asset-item>
+</a-assets>-->
+
+  <a-marker preset="hiro">
+    <!--<a-box position='0 0.5 -0.5' material='opacity: 0.5; side: double'>
+      <a-torus-knot radius='0.26' radius-tubular='0.05'>
+        <a-animation attribute="rotation" to="360 0 0" dur="3000" easing='linear' repeat="indefinite"></a-animation>
+      </a-torus-knot>
+    </a-box>-->
+
+  
+<a-entity visible="true">
+        
+  <a-entity   position="0 0.5 0"  geometry="primitive:cone; radiusBottom: 0.01; radiusTop:0.65;height:0.5" material="color:red;side:double;opacity: 0.2; transparent: true;" >
+    </a-entity>
+<a-entity line="start: 0 0 0; end: 1 1 1; color: red"
+      line__2="start: 0 0 0; end: 1 1 -1; color: green" line__3="start: 0 0 0; end: -1 1 -1; color: blue" line__4="start: 0 0 0; end: -1 1 1; color: pink"></a-entity>
+      <a-animation attribute="rotation" position="0 0 0"
+           dur="5000"
+           fill="forwards"
+           to="0 360 0"
+           repeat="indefinite" easing="linear"></a-animation>
+      </a-entity>
+  <!--<a-entity collada-model="#watch" scale=".05 .05 .05"></a-entity>-->
+  <a-plane position="0 0 0" color="yellow" rotation="-90 0 0" ></a-plane>
+  <a-entity>
+  <a-plane position="0 0.5 -1" rotation="-45 0 0"  color="pink" material="opacity: 0.5; transparent: true;side:double;" text="value:front;align:center;width:5"></a-plane>
+    <a-animation attribute="rotation" position="0 0 0"
+           dur="5000"
+           fill="forwards"
+           to="0 360 0"
+           repeat="indefinite" easing="linear"></a-animation>
+  </a-entity>
+  
+  <a-entity>
+  <a-plane position="1 0.5 0" rotation="-45 -90 0"  color="blue" material="opacity: 0.5; transparent: true;side:double;" text="value:Right;align:center;width:5"></a-plane>
+  <a-animation attribute="rotation" position="0 0 0"
+           dur="5000"
+           fill="forwards"
+           to="0 360 0"
+           repeat="indefinite" easing="linear">
+    </a-animation>
+  </a-entity>
+  <a-entity>
+  <a-plane position="-1 0.5 0" rotation="-45 90 0" color="red" material="opacity: 0.5; transparent: true;side:double;" text="value:Left;align:center;width:5"></a-plane>
+  <a-animation attribute="rotation" position="0 0 0"
+           dur="5000"
+           fill="forwards"
+           to="0 360 0"
+           repeat="indefinite" easing="linear">
+    </a-animation>
+  </a-entity>
+  <a-entity>
+  <a-plane position="0 0.5 1" rotation="-45 180 0"  color="green" material="opacity: 0.5; transparent: true;side:double;" text="value:back;align:center;width:5"></a-plane>
+  <a-animation attribute="rotation" position="0 0 0"
+           dur="5000"
+           fill="forwards"
+           to="0 360 0"
+           repeat="indefinite" easing="linear">
+    </a-animation>
+  </a-entity>
+</a-marker>
+  <a-entity camera position="0 -0.5 0" wasd-controls></a-entity>
+
+</a-scene>

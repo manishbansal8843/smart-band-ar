@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="bleNotSupported" *ngIf="bleNotSupported; else bleSupported">  
+<div class="bleNotSupported" *ngIf="bleNotSupported">  
   Your browser does not support Smart Bluetooth. See <a href='http://caniuse.com/#search=Bluetooth'>here</a> for more details.
 </div>
 
@@ -8,10 +8,18 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<ng-template #bleSupported>
-  Pedometer reading is {{(pedoStats|async)?.steps}}
-  
-</ng-template>
-<button (click)='getSteps()'>Get Steps</button>
 
+<button *ngIf="!bleNotSupported" (click)='doPairing()'>Pair device</button>
+<div *ngIf="ifPaired">
+<button  (click)='getSteps()'>Get Steps</button>
+
+    <p> Pedometer step reading is {{(pedoStats)?.steps}}</p>
+    <p> Pedometer calories reading is {{(pedoStats)?.calories}}</p>
+    <p> Pedometer distance reading is {{(pedoStats)?.distance}} meters</p>
+   
+     
+   </div>
+   <app-display-mi-band-stats></app-display-mi-band-stats>
+   <app-ar-display-mi-band></app-ar-display-mi-band>
+   
 
