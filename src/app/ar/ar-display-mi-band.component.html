@@ -1,14 +1,20 @@
-<div class='over-ar'>
-<button (click)='showAR=true'>AR Experience</button>
+
+<div>
+  <button (click)='getPedometerStats()'>Pair Device for AR1</button>
+
+</div>
+<div class='over-ar-1' *ngIf='deviceInitialized'>
+<button (click)='showAR=true;'>AR Experience</button>
 <button (click)='showAR=false'>Hide AR Experience</button>
 </div>
-<a-scene stats embedded arjs='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' *ngIf='showAR' >
+<a-scene  embedded arjs='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' *ngIf='showAR' >
  <!-- <a-assets>
   <a-asset-item id="watch" src="/assets/model_clock.dae"></a-asset-item>
 </a-assets>-->
 
   <a-marker preset="hiro">
-    <!--<a-box position='0 0.5 -0.5' material='opacity: 0.5; side: double'>
+   
+    <!--<a-box position='0 0.5 0' material='opacity: 0.5; side: double'>
       <a-torus-knot radius='0.26' radius-tubular='0.05'>
         <a-animation attribute="rotation" to="360 0 0" dur="3000" easing='linear' repeat="indefinite"></a-animation>
       </a-torus-knot>
@@ -30,7 +36,10 @@
   <!--<a-entity collada-model="#watch" scale=".05 .05 .05"></a-entity>-->
   <a-plane position="0 0 0" color="yellow" rotation="-90 0 0" ></a-plane>
   <a-entity>
-  <a-plane position="0 0.5 -1" rotation="-45 0 0"  color="pink" material="opacity: 0.5; transparent: true;side:double;" text="value:front;align:center;width:5"></a-plane>
+  <a-plane position="0 0.5 -1" rotation="-45 0 0"  color="pink" material="opacity: 0.5; transparent: true;side:double;" >
+    <a-text id='front-plane'  align='center' width='5'></a-text>
+
+  </a-plane>
     <a-animation attribute="rotation" position="0 0 0"
            dur="5000"
            fill="forwards"
@@ -39,7 +48,9 @@
   </a-entity>
   
   <a-entity>
-  <a-plane position="1 0.5 0" rotation="-45 -90 0"  color="blue" material="opacity: 0.5; transparent: true;side:double;" text="value:Right;align:center;width:5"></a-plane>
+  <a-plane position="1 0.5 0" rotation="-45 -90 0"  color="blue" material="opacity: 0.5; transparent: true;side:double;" >
+    <a-text id='right-plane'  align='center' width='5'></a-text>
+  </a-plane>
   <a-animation attribute="rotation" position="0 0 0"
            dur="5000"
            fill="forwards"
@@ -48,7 +59,9 @@
     </a-animation>
   </a-entity>
   <a-entity>
-  <a-plane position="-1 0.5 0" rotation="-45 90 0" color="red" material="opacity: 0.5; transparent: true;side:double;" text="value:Left;align:center;width:5"></a-plane>
+  <a-plane position="-1 0.5 0" rotation="-45 90 0" color="red" material="opacity: 0.5; transparent: true;side:double;" >
+    <a-text id='left-plane'  align='center' width='5'></a-text>
+  </a-plane>
   <a-animation attribute="rotation" position="0 0 0"
            dur="5000"
            fill="forwards"
@@ -57,7 +70,10 @@
     </a-animation>
   </a-entity>
   <a-entity>
-  <a-plane position="0 0.5 1" rotation="-45 180 0"  color="green" material="opacity: 0.5; transparent: true;side:double;" text="value:back;align:center;width:5"></a-plane>
+  <a-plane position="0 0.5 1" rotation="-45 180 0"  color="green" material="opacity: 0.5; transparent: true;side:double;" >
+    <a-text id='back-plane'  align='center' width='5'></a-text>
+
+  </a-plane>
   <a-animation attribute="rotation" position="0 0 0"
            dur="5000"
            fill="forwards"
@@ -66,6 +82,8 @@
     </a-animation>
   </a-entity>
 </a-marker>
-  <a-entity camera position="0 -0.5 0" wasd-controls></a-entity>
+  <a-entity  position="0 0 0" camera>
+    
+  </a-entity>
 
 </a-scene>
