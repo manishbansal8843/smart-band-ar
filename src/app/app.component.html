@@ -2,14 +2,14 @@
 <div class="bleNotSupported" *ngIf="bleNotSupported">  
   Your browser does not support Smart Bluetooth. See <a href='http://caniuse.com/#search=Bluetooth'>here</a> for more details.
 </div>
-
+<div *ngIf='!hideAllButARDisplay'>
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
 </div>
 
-<button *ngIf="!bleNotSupported" (click)='doPairing()'>Pair device</button>
+<!--<button *ngIf="!bleNotSupported" (click)='doPairing()'>Pair device</button>
 <div *ngIf="ifPaired">
 <button  (click)='getSteps()'>Get Steps</button>
 
@@ -18,8 +18,16 @@
     <p> Pedometer distance reading is {{(pedoStats)?.distance}} meters</p>
    
      
-   </div>
+   </div>-->
+   <button  (click)='displayDigitalMiDisplay()'>Digital MI Display</button>
+   <button  (click)='displayARMiDisplay()'>AR MI Display</button>
+
+  </div>
+   <!--<ng-template *ngIf="!bleNotSupported">
    <app-display-mi-band-stats></app-display-mi-band-stats>
-   <app-ar-display-mi-band></app-ar-display-mi-band>
-   
+  </ng-template>
+  <ng-template *ngIf="!bleNotSupported">
+    <app-ar-display-mi-band></app-ar-display-mi-band>
+   </ng-template>-->
+   <router-outlet></router-outlet>
 

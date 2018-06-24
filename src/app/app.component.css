@@ -6,3 +6,10 @@
     font-size: 20px;
     padding: 10px 0px;
 }
+
+button{
+    margin: 5px;
+    display: block;
+    padding:2px;
+    color: blue;
+}

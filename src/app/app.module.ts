@@ -6,6 +6,7 @@ import { WebBluetoothModule } from '@manekinekko/angular-web-bluetooth';
 import { AppComponent } from './app.component';
 import { DisplayMiBandStatsComponent } from './digital/display-mi-band-stats.component';
 import { ArDisplayMiBandComponent } from './ar/ar-display-mi-band.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ArDisplayMiBandComponent } from './ar/ar-display-mi-band.component';
     BrowserModule,
     WebBluetoothModule.forRoot({
       enableTracing: true 
-    })
+    }),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

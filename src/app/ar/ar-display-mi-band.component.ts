@@ -77,7 +77,7 @@ ngDoCheck(): void {
          el3: any = document.getElementById('back-plane'),
          el4: any = document.getElementById('front-plane');
       if(el1 && el2 && el3 && el4){
-        console.log('***********calling ngdocheck***********');
+       // console.log('***********calling ngdocheck***********');
         el1.setAttribute("value", `Step Count :
         ${this.pedoMeterStat.steps}`);
       el2.setAttribute("value", `Calories :\n${this.pedoMeterStat.calories}`);

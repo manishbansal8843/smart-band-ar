@@ -1,0 +1,18 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes }  from '@angular/router'
+import { DisplayMiBandStatsComponent } from 'src/app/digital/display-mi-band-stats.component';
+import { ArDisplayMiBandComponent } from 'src/app/ar/ar-display-mi-band.component';
+
+const routes:Routes=[
+  {path:'digital-mi-display',component:DisplayMiBandStatsComponent},
+  {path:'ar-mi-display',component:ArDisplayMiBandComponent},
+  {path: '',   redirectTo: '/', pathMatch: 'full'}
+
+];
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports:[RouterModule]
+})
+export class AppRoutingModule { }

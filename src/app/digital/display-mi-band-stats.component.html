@@ -1,6 +1,6 @@
 
-<div *ngIf="bleNotSupported">
-<a href="#" (click)="getPedometerStats()" >Get Pedometer stats</a>
+<div *ngIf="!bleNotSupported">
+<button (click)="getPedometerStats()" >Get Pedometer stats</button>
 <p> Pedometer step reading is {{(pedoMeterStat)?.steps}}</p>
 <p> Pedometer calories reading is {{(pedoMeterStat)?.calories}}</p>
 <p> Pedometer distance reading is {{(pedoMeterStat)?.distance}} meters</p>
