@@ -9,8 +9,10 @@ import { MiBandService2Service } from 'src/app/mi-band-service-2.service';
   styleUrls: ['./ar-display-mi-band.component.css']
 })
 export class ArDisplayMiBandComponent implements OnInit {
-  deviceInitialized:boolean=false;
-showAR:boolean;
+  //scanStarted:boolean=false;
+
+ // resultsArrived:boolean=false;
+//showAR:boolean;
 pedoMeterStat: PedoMeterResult;
 device: any = {};
 miBandService:MiBandService2Service;
@@ -29,6 +31,7 @@ ngOnInit() {
   if(!this.bleNotSupported){
   this.getDeviceStatus();
   this.streamValues();
+  this.pedoMeterStat=this.miBandService.initialPedoMeterResult;
   }
 }
 
@@ -57,16 +60,17 @@ getDeviceStatus() {
   });
 }
 
-getPedometerStats() {
+/* getPedometerStats() {
+  this.scanStarted=true;
   return this.miBandService.getBatteryLevel().subscribe(this.showPedometerStats.bind(this));
-}
+} */
 
 showPedometerStats(value: PedoMeterResult) {
   // force change detection
   this._zone.run(() => {
     console.log('Reading pedo results level:'+JSON.stringify(value));
     this.pedoMeterStat =  value;
-    this.deviceInitialized=true;
+   // this.resultsArrived=true;
   });
 }
 

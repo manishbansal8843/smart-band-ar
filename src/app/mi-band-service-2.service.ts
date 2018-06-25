@@ -26,6 +26,7 @@ export class MiBandService2Service {
 
   //static GATT_CHARACTERISTIC_BATTERY_LEVEL = 'battery_level';
   //static GATT_PRIMARY_SERVICE = 'battery_service';
+  initialPedoMeterResult:PedoMeterResult;
 
   static get advertisementService() { return 0xFEE0; }
 
@@ -64,7 +65,7 @@ export class MiBandService2Service {
    *
    * @return Emites the value of the requested service read from the device
    */
-  getBatteryLevel() {
+  getPedoStats() {
     console.log('getting pedo stats while discovery');
 
     try {
@@ -89,6 +90,7 @@ export class MiBandService2Service {
             }),
             // 4) ask for the value of that characteristic (will return a DataView)
             mergeMap((characteristic: BluetoothRemoteGATTCharacteristic) => {
+              console.log('got the characterisitc inside service');
               return this.ble.readValue$(characteristic);
             }),
             // 5) on that DataView, get the right value
@@ -96,7 +98,8 @@ export class MiBandService2Service {
               console.log('got the data. last.');
              // let data1 = Buffer.from(data.buffer);
               //console.log('got the data :'+data.buffer.length);
-              return new PedoMeterResult(data.getUint16(1,true),data.getUint32(5,true),data.getUint32(9,true));
+              this.initialPedoMeterResult=new PedoMeterResult(data.getUint16(1,true),data.getUint32(5,true),data.getUint32(9,true));
+              return this.initialPedoMeterResult;
             }
           )
       ));

@@ -9,8 +9,10 @@
   </h1>
 </div>
 
-<!--<button *ngIf="!bleNotSupported" (click)='doPairing()'>Pair device</button>
-<div *ngIf="ifPaired">
+<button  *ngIf="!bleNotSupported && !ifPaired" (click)='doPairing()'>{{PairDevice}}</button>
+<div class="loader" *ngIf='!ifPaired && pairingStarted'></div>
+
+<!--<div *ngIf="ifPaired">
 <button  (click)='getSteps()'>Get Steps</button>
 
     <p> Pedometer step reading is {{(pedoStats)?.steps}}</p>
@@ -19,9 +21,11 @@
    
      
    </div>-->
+   <div *ngIf="ifPaired">
    <button  (click)='displayDigitalMiDisplay()'>Digital MI Display</button>
    <button  (click)='displayARMiDisplay()'>AR MI Display</button>
-
+  <!-- <button  (click)='displayNewDigitalMiDisplay()'>New Digi MI Display</button>-->
+  </div>
   </div>
    <!--<ng-template *ngIf="!bleNotSupported">
    <app-display-mi-band-stats></app-display-mi-band-stats>

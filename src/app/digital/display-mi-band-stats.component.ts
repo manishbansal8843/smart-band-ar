@@ -14,6 +14,8 @@ export class DisplayMiBandStatsComponent implements OnInit {
   device: any = {};
   miBandService:MiBandService2Service;
   bleNotSupported:boolean;
+  resultsArrived:boolean=false;
+  scanStarted:boolean=false;
   constructor(private _zone: NgZone,private injector: Injector) {
     if (!navigator.bluetooth) {
       this.bleNotSupported=true;
@@ -28,6 +30,7 @@ export class DisplayMiBandStatsComponent implements OnInit {
     if(!this.bleNotSupported){
     this.getDeviceStatus();
     this.streamValues();
+    this.pedoMeterStat=this.miBandService.initialPedoMeterResult;
     }
   }
 
@@ -56,14 +59,16 @@ export class DisplayMiBandStatsComponent implements OnInit {
     });
   }
 
-  getPedometerStats() {
+  /*getPedometerStats() {
+    this.scanStarted=true;
     return this.miBandService.getBatteryLevel().subscribe(this.showPedometerStats.bind(this));
-  }
+  }*/
 
   showPedometerStats(value: PedoMeterResult) {
     // force change detection
     this._zone.run(() => {
       console.log('Reading pedo results level:'+JSON.stringify(value));
+      this.resultsArrived=true;
       this.pedoMeterStat =  value;
     });
   }
