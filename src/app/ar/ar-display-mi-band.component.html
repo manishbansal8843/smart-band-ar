@@ -25,21 +25,34 @@
   
 <a-entity visible="true">
         
-  <a-entity   position="0 0.5 0"  geometry="primitive:cone; radiusBottom: 0.01; radiusTop:0.5;height:0.25" material="color:red;side:double;opacity: 0.2; transparent: true;" >
-    </a-entity>
+ <!-- <a-entity   position="0 0.5 0"  geometry="primitive:cone; radiusBottom: 0.01; radiusTop:0.25;height:0.25" material="color:red;side:double;opacity: 0.2; transparent: true;" >
+    </a-entity>-->
 <a-entity line="start: 0 0 0; end: 1 1 1; color: red"
-      line__2="start: 0 0 0; end: 1 1 -1; color: green" line__3="start: 0 0 0; end: -1 1 -1; color: blue" line__4="start: 0 0 0; end: -1 1 1; color: pink"></a-entity>
+      line__1="start: 0 0 0; end: 1 1 -1; color: green" line__2="start: 0 0 0; end: -1 1 -1; color: blue" line__3="start: 0 0 0; end: -1 1 1; color: yellow"
+      line__4="end: 0 2 0; start: 1 1 1; color: red"
+      line__5="end: 0 2 0; start: 1 1 -1; color: green" line__6="end: 0 2 0; start: -1 1 -1; color: blue" line__7="end: 0 2 0; start: -1 1 1; color: yellow"
+     
+      line__8="start: 0 0 0; end: 0.5 1 0.5; color: red"
+      line__9="start: 0 0 0; end: 0.5 1 -0.5; color: green" line__10="start: 0 0 0; end: -0.5 1 -0.5; color: blue" line__11="start: 0 0 0; end: -0.5 1 0.5; color: yellow"
+      line__12="end: 0 2 0; start: 0.5 1 0.5; color: red"
+      line__13="end: 0 2 0; start: 0.5 1 -0.5; color: green" line__14="end: 0 2 0; start: -0.5 1 -0.5; color: blue" line__15="end: 0 2 0; start: -0.5 1 0.5; color: yellow"
+     
+     
+      ></a-entity>
       <a-animation attribute="rotation" position="0 0 0"
            dur="5000"
            fill="forwards"
            to="0 360 0"
            repeat="indefinite" easing="linear"></a-animation>
+           
       </a-entity>
   <!--<a-entity collada-model="#watch" scale=".05 .05 .05"></a-entity>-->
-  <a-plane position="0 0 0" color="yellow" rotation="-90 0 0" ></a-plane>
+  <a-plane position="0 0 0" color="pink" rotation="-90 0 0" material="opacity: 0.5; transparent: true;side:double;">
+    
+  </a-plane>
   <a-entity>
-  <a-plane position="0 0.5 -1" rotation="-45 0 0"  color="pink" material="opacity: 0.5; transparent: true;side:double;" >
-    <a-text id='front-plane'  align='center' width='5'></a-text>
+  <a-plane position="0 0.5 -1" rotation="-45 0 0"  color="yellow" material="opacity: 0.5; transparent: true;side:double;" >
+    <a-text id='front-plane'  align='center' width='4'></a-text>
 
   </a-plane>
     <a-animation attribute="rotation" position="0 0 0"
@@ -51,7 +64,7 @@
   
   <a-entity>
   <a-plane position="1 0.5 0" rotation="-45 -90 0"  color="blue" material="opacity: 0.5; transparent: true;side:double;" >
-    <a-text id='right-plane'  align='center' width='5'></a-text>
+    <a-text id='right-plane'  align='center' width='4'></a-text>
   </a-plane>
   <a-animation attribute="rotation" position="0 0 0"
            dur="5000"
@@ -62,7 +75,7 @@
   </a-entity>
   <a-entity>
   <a-plane position="-1 0.5 0" rotation="-45 90 0" color="red" material="opacity: 0.5; transparent: true;side:double;" >
-    <a-text id='left-plane'  align='center' width='5'></a-text>
+    <a-text id='left-plane'  align='center' width='4'></a-text>
   </a-plane>
   <a-animation attribute="rotation" position="0 0 0"
            dur="5000"
@@ -73,7 +86,7 @@
   </a-entity>
   <a-entity>
   <a-plane position="0 0.5 1" rotation="-45 180 0"  color="green" material="opacity: 0.5; transparent: true;side:double;" >
-    <a-text id='back-plane'  align='center' width='5'></a-text>
+    <a-text id='back-plane'  align='center' width='4'></a-text>
 
   </a-plane>
   <a-animation attribute="rotation" position="0 0 0"

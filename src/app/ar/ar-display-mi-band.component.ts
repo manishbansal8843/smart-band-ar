@@ -13,6 +13,8 @@ export class ArDisplayMiBandComponent implements OnInit {
 
  // resultsArrived:boolean=false;
 //showAR:boolean;
+ days:string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  months:string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 pedoMeterStat: PedoMeterResult;
 device: any = {};
 miBandService:MiBandService2Service;
@@ -82,11 +84,11 @@ ngDoCheck(): void {
          el4: any = document.getElementById('front-plane');
       if(el1 && el2 && el3 && el4){
        // console.log('***********calling ngdocheck***********');
-        el1.setAttribute("value", `Step Count :
-        ${this.pedoMeterStat.steps}`);
-      el2.setAttribute("value", `Calories :\n${this.pedoMeterStat.calories}`);
-      el3.setAttribute("value", `Distance :\n${this.pedoMeterStat.distance}`);
-      el4.setAttribute("value", `Step Count :${this.pedoMeterStat.steps}`);
+        el1.setAttribute("value", `Step Count\n\n${this.pedoMeterStat.steps}`);
+      el2.setAttribute("value", `Calories\n\n${this.pedoMeterStat.calories}`);
+      el3.setAttribute("value", `Distance\n\n${this.pedoMeterStat.distance}`);
+      let today=new Date();
+      el4.setAttribute("value", `${today.getHours()}:${today.getMinutes()}\n${this.days[today.getDay()]}, ${this.months[today.getMonth()]} ${today.getDate()}`);
 
      // console.log('setting value of left plane as :'+this.pedoMeterStat.steps);
       }
