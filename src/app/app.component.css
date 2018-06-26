@@ -22,9 +22,9 @@ button{
     cursor: pointer;
 }
 
-button:visited button:active button:hover{
-    background-color:green;
-}
+/*button:visited button:active button:hover{
+   background-color:green;
+}*/
 
 
 
