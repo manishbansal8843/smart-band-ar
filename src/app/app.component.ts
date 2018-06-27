@@ -17,7 +17,7 @@ import { AuthGaurdService } from 'src/app/auth-gaurd.service';
 export class AppComponent implements OnInit,OnDestroy{
   title = 'Mi Smart band AR experience';
   @ViewChild('PairingButton') pairingButton:ElementRef;
-  PairDeviceButtonLabel:string='Pair Device';
+  PairDeviceButtonLabel:string='Search Device';
   disablePairingButton:boolean=false;
   //pedoStats:PedoMeterResult;
   miBandService:MiBandService2Service;
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit,OnDestroy{
   }*/
 
   doPairing(){
-    this.PairDeviceButtonLabel='Pairing..Please Wait.';
+    this.PairDeviceButtonLabel='Searching..Please Wait.';
     //this.renderer.setProperty(this.pairingButton.nativeElement,'disabled','true');
     this.disablePairingButton=true;
     this.renderer.setStyle(this.pairingButton.nativeElement,'background-color','grey');
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit,OnDestroy{
       this.authgaurd.childRoutesEnabled=true;
      },error=>{
       this.pairingStarted=false;
-      this.PairDeviceButtonLabel='Pair Device';
+      this.PairDeviceButtonLabel='Search Device';
       this.renderer.setStyle(this.pairingButton.nativeElement,'background-color','green');
      // this.renderer.setProperty(this.pairingButton.nativeElement,'disabled','false');
      this.disablePairingButton=false;
