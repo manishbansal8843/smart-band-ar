@@ -62,7 +62,7 @@
   </a-plane>
   <a-entity>
   <a-plane position="0 0.5 -1" rotation="-45 0 0"  color="yellow" material="opacity: 0.5; transparent: true;side:double;" >
-    <a-text id='front-plane'  align='center' width='4'></a-text>
+    <a-text id='front-plane' #frontPlane align='center' width='4'></a-text>
 
   </a-plane>
     <a-animation attribute="rotation" position="0 0 0"
@@ -74,7 +74,7 @@
   
   <a-entity>
   <a-plane position="1 0.5 0" rotation="-45 -90 0"  color="blue" material="opacity: 0.5; transparent: true;side:double;" >
-    <a-text id='right-plane'  align='center' width='4'></a-text>
+    <a-text id='right-plane' #rightPlane align='center' width='4'></a-text>
   </a-plane>
   <a-animation attribute="rotation" position="0 0 0"
            dur="5000"
@@ -85,7 +85,7 @@
   </a-entity>
   <a-entity>
   <a-plane position="-1 0.5 0" rotation="-45 90 0" color="red" material="opacity: 0.5; transparent: true;side:double;" >
-    <a-text id='left-plane'  align='center' width='4'></a-text>
+    <a-text id='left-plane' #leftPlane align='center' width='4'></a-text>
   </a-plane>
   <a-animation attribute="rotation" position="0 0 0"
            dur="5000"
@@ -96,7 +96,7 @@
   </a-entity>
   <a-entity>
   <a-plane position="0 0.5 1" rotation="-45 180 0"  color="green" material="opacity: 0.5; transparent: true;side:double;" >
-    <a-text id='back-plane'  align='center' width='4'></a-text>
+    <a-text id='back-plane' #backPlane align='center' width='4'></a-text>
 
   </a-plane>
   <a-animation attribute="rotation" position="0 0 0"

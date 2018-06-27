@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,Renderer2,ElementRef } from '@angular/core';
 import { PedoMeterResult } from 'src/app/PedoMeterResult';
 import { NgZone,Injector } from '@angular/core';
 import { MiBandService2Service } from 'src/app/mi-band-service-2.service';
@@ -11,15 +11,23 @@ import { MiBandService2Service } from 'src/app/mi-band-service-2.service';
 export class ArDisplayMiBandComponent implements OnInit {
   //scanStarted:boolean=false;
 
- // resultsArrived:boolean=false;
+ // resultsArrived:boolean=false; 
 //showAR:boolean;
+@ViewChild('leftPlane')
+leftPlaneEle:ElementRef;
+@ViewChild('frontPlane')
+frontPlaneEle:ElementRef;
+@ViewChild('rightPlane')
+rightPlaneEle:ElementRef;
+@ViewChild('backPlane')
+backPlaneEle:ElementRef;
  days:string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   months:string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 pedoMeterStat: PedoMeterResult;
 device: any = {};
 miBandService:MiBandService2Service;
 bleNotSupported:boolean;
-constructor(private _zone: NgZone,private injector: Injector) {
+constructor(private _zone: NgZone,private injector: Injector,private renderer : Renderer2) {
   if (!navigator.bluetooth) {
     this.bleNotSupported=true;
   }
@@ -77,8 +85,8 @@ showPedometerStats(value: PedoMeterResult) {
 }
 
 ngDoCheck(): void {
-
-         let el1: any = document.getElementById('left-plane'),
+  let today=new Date();
+       /*  let el1: any = document.getElementById('left-plane'),
          el2: any = document.getElementById('right-plane'),
          el3: any = document.getElementById('back-plane'),
          el4: any = document.getElementById('front-plane');
@@ -87,12 +95,18 @@ ngDoCheck(): void {
         el1.setAttribute("value", `Step Count\n\n${this.pedoMeterStat.steps}`);
       el2.setAttribute("value", `Calories\n\n${this.pedoMeterStat.calories}`);
       el3.setAttribute("value", `Distance\n\n${this.pedoMeterStat.distance}`);
-      let today=new Date();
+      
       el4.setAttribute("value", `${today.getHours()}:${today.getMinutes()}\n${this.days[today.getDay()]}, ${this.months[today.getMonth()]} ${today.getDate()}`);
 
      // console.log('setting value of left plane as :'+this.pedoMeterStat.steps);
+      }*/
+      if(this.leftPlaneEle && this.rightPlaneEle && this.backPlaneEle && this.frontPlaneEle){
+        this.renderer.setAttribute(this.leftPlaneEle.nativeElement,'value',`Step Count\n\n${this.pedoMeterStat.steps}`);
+        this.renderer.setAttribute(this.rightPlaneEle.nativeElement,'value',`Calories\n\n${this.pedoMeterStat.calories}`);
+        this.renderer.setAttribute(this.backPlaneEle.nativeElement,'value',`Distance\n\n${this.pedoMeterStat.distance}`);
+        this.renderer.setAttribute(this.frontPlaneEle.nativeElement,'value',`${today.getHours()}:${today.getMinutes()}\n${this.days[today.getDay()]}, ${this.months[today.getMonth()]} ${today.getDate()}`);
+
       }
-      
   
 }
 }
