@@ -1,40 +1,24 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="bleNotSupported" *ngIf="bleNotSupported">  
-  Your browser does not support Smart Bluetooth. See <a href='http://caniuse.com/#search=Bluetooth'>here</a> for more details.
+<div class="bleNotSupported" *ngIf="bleNotSupported">
+  Your browser does not support Smart Bluetooth. See
+  <a href='http://caniuse.com/#search=Bluetooth'>here</a> for more details.
 </div>
-<div class="bleNotSupported" *ngIf="errorDuringPairing">  
+<div class="bleNotSupported" *ngIf="errorDuringPairing">
   Error occured during pairing. {{pairingErrorMssg}}
 </div>
 <div *ngIf='!hideAllButARDisplay'>
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+  <div style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+
+  <button #PairingButton *ngIf="!bleNotSupported && !ifPaired" (click)='doPairing()' [disabled]='disablePairingButton'>{{PairDeviceButtonLabel}}</button>
+  <div class="loader" *ngIf='!ifPaired && pairingStarted'></div>
+
+  <div *ngIf="ifPaired">
+    <button (click)='displayDigitalMiDisplay()'>Digital MI Display</button>
+    <button (click)='displayARMiDisplay()'>AR MI Display</button>
+  </div>
 </div>
 
-<button #PairingButton *ngIf="!bleNotSupported && !ifPaired" (click)='doPairing()' [disabled]='disablePairingButton'>{{PairDeviceButtonLabel}}</button>
-<div class="loader" *ngIf='!ifPaired && pairingStarted'></div>
-
-<!--<div *ngIf="ifPaired">
-<button  (click)='getSteps()'>Get Steps</button>
-
-    <p> Pedometer step reading is {{(pedoStats)?.steps}} </p>
-    <p> Pedometer calories reading is {{(pedoStats)?.calories}}</p>
-    <p> Pedometer distance reading is {{(pedoStats)?.distance}} meters</p>
-   
-     
-   </div>-->
-   <div *ngIf="ifPaired">
-   <button  (click)='displayDigitalMiDisplay()'>Digital MI Display</button>
-   <button  (click)='displayARMiDisplay()'>AR MI Display</button>
-  <!-- <button  (click)='displayNewDigitalMiDisplay()'>New Digi MI Display</button>-->
-  </div>
-  </div>
-   <!--<ng-template *ngIf="!bleNotSupported">
-   <app-display-mi-band-stats></app-display-mi-band-stats>
-  </ng-template>
-  <ng-template *ngIf="!bleNotSupported">
-    <app-ar-display-mi-band></app-ar-display-mi-band>
-   </ng-template>-->
-   <router-outlet></router-outlet>
-
+<router-outlet></router-outlet>

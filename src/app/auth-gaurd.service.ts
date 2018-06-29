@@ -10,7 +10,6 @@ export class AuthGaurdService implements CanActivate{
   constructor(private router:Router) { }
   
   canActivate(): boolean {
-   // let url: string = state.url;
 
     if(this.childRoutesEnabled)
     return true;

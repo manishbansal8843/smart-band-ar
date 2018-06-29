@@ -17,7 +17,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   imports: [
     BrowserModule,
     WebBluetoothModule.forRoot({
-      enableTracing: true 
+      enableTracing: false 
     }),
     AppRoutingModule
   ],

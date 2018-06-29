@@ -1,27 +1,19 @@
-
 <div *ngIf="!bleNotSupported">
-<!--<button (click)="getPedometerStats()" >Get Pedometer stats</button>
-<div class="loader" *ngIf='!resultsArrived && scanStarted'></div>
-<div *ngIf="resultsArrived">
-<p> Pedometer step reading is {{(pedoMeterStat)?.steps}}</p>
-<p> Pedometer calories reading is {{(pedoMeterStat)?.calories}}</p>
-<p> Pedometer distance reading is {{(pedoMeterStat)?.distance}} meters</p>-->
-<table>
-    <th colspan='2'>Pedometer Reading</th>
-    <tr>
-        <td>Step Count</td>
-        <td>{{(pedoMeterStat)?.steps}}</td>
-    </tr>
-    <tr>
-        <td>Calories</td>
-        <td>{{(pedoMeterStat)?.calories}}</td>
+    <table>
+        <th colspan='2'>Pedometer Reading</th>
+        <tr>
+            <td>Step Count</td>
+            <td>{{(pedoMeterStat)?.steps}}</td>
+        </tr>
+        <tr>
+            <td>Calories</td>
+            <td>{{(pedoMeterStat)?.calories}}</td>
 
-    </tr>
-    <tr>
-        <td>Distance (in meteres)</td>
-        <td>{{(pedoMeterStat)?.distance}}</td>
+        </tr>
+        <tr>
+            <td>Distance (in meteres)</td>
+            <td>{{(pedoMeterStat)?.distance}}</td>
 
-    </tr>
-</table>
-<!--</div>-->
+        </tr>
+    </table>
 </div>

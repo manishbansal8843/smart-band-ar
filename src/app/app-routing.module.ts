@@ -7,7 +7,6 @@ import { AuthGaurdService } from 'src/app/auth-gaurd.service';
 const routes:Routes=[
   {path:'digital-mi-display',component:DisplayMiBandStatsComponent,canActivate:[AuthGaurdService]},
   {path:'ar-mi-display',component:ArDisplayMiBandComponent,canActivate:[AuthGaurdService]},
- // {path:'new-digital-mi-display',component:DigiDisplayMiBandComponent},
   {path: '',   redirectTo: '/', pathMatch: 'full'}
 
 ];

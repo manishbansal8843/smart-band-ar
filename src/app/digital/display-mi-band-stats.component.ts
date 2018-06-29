@@ -12,38 +12,33 @@ import { Injector } from '@angular/core';
 export class DisplayMiBandStatsComponent implements OnInit {
   pedoMeterStat: PedoMeterResult;
   device: any = {};
-  miBandService:MiBandService2Service;
-  bleNotSupported:boolean;
-  resultsArrived:boolean=false;
-  scanStarted:boolean=false;
-  constructor(private _zone: NgZone,private injector: Injector) {
+  miBandService: MiBandService2Service;
+  bleNotSupported: boolean;
+  resultsArrived: boolean = false;
+  scanStarted: boolean = false;
+  constructor(private _zone: NgZone, private injector: Injector) {
     if (!navigator.bluetooth) {
-      this.bleNotSupported=true;
+      this.bleNotSupported = true;
     }
     else {
       this.miBandService = <MiBandService2Service>this.injector.get(MiBandService2Service);
-     
+
     }
-   }
+  }
 
   ngOnInit() {
-    if(!this.bleNotSupported){
-    this.getDeviceStatus();
-    this.streamValues();
-    this.pedoMeterStat=this.miBandService.initialPedoMeterResult;
+    if (!this.bleNotSupported) {
+      this.getDeviceStatus();
+      this.streamValues();
+      this.pedoMeterStat = this.miBandService.initialPedoMeterResult;
     }
   }
 
   streamValues() {
-    this.miBandService.streamValues().subscribe((data)=>{
-     // console.log('got the data in stream.'+JSON.stringify(data));
-              //let data1 = Buffer.from(data.buffer);
-             // console.log('got the data in stream:'+data.getUint16(1,true));
-             // console.log('got the data in stream:'+data.getUint32(5,true));
-             // console.log('got the data in stream:'+data.getUint32(9,true));
-              console.log('from streaming');
-              this.showPedometerStats( new PedoMeterResult(data.getUint16(1,true),data.getUint32(5,true),data.getUint32(9,true)));
-           
+    this.miBandService.streamValues().subscribe((data) => {
+      //console.log('from streaming');
+      this.showPedometerStats(new PedoMeterResult(data.getUint16(1, true), data.getUint32(5, true), data.getUint32(9, true)));
+
     });
   }
 
@@ -59,17 +54,13 @@ export class DisplayMiBandStatsComponent implements OnInit {
     });
   }
 
-  /*getPedometerStats() {
-    this.scanStarted=true;
-    return this.miBandService.getBatteryLevel().subscribe(this.showPedometerStats.bind(this));
-  }*/
 
   showPedometerStats(value: PedoMeterResult) {
     // force change detection
     this._zone.run(() => {
-      console.log('Reading pedo results level:'+JSON.stringify(value));
-      this.resultsArrived=true;
-      this.pedoMeterStat =  value;
+      console.log('Reading pedo results level:' + JSON.stringify(value));
+      this.resultsArrived = true;
+      this.pedoMeterStat = value;
     });
   }
 
