@@ -13,7 +13,7 @@
 
 # For developers
 
-The library angular-web-bluetooth which is used to connect to BLE devices has one bug. For this, I ahve raised one issue also. further, i have opened the PR for the same. Until that is fixed, you need to fix the issue yourself post npm install.
+The library angular-web-bluetooth which is used to connect to BLE devices has one bug. For this, I have raised one issue also. further, i have opened the PR for the same. Until that is fixed, you need to fix the issue yourself post npm install.
 
 Issue :
 
@@ -25,5 +25,5 @@ https://github.com/manekinekko/angular-web-bluetooth/pull/40
 
 Fix can be referred from above pull request. This fix needs to be applied inside the node modules at below path.
 
-<project directory>\node_modules\@manekinekko\angular-web-bluetooth\fesm5\ manekinekko-angular-web-bluetooth.js
+project_directory\node_modules\ @manekinekko\angular-web-bluetooth\fesm5\ manekinekko-angular-web-bluetooth.js
 
