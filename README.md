@@ -1,27 +1,29 @@
 # SmartBandAr
+ This repository is about how I turned my MI smart band into Augmented reality watch using Angular.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+![Alt text](docs/images/Media3.gif?raw=true "AR enabled smart band")
 
-## Development server
+ You can check the following article for further details.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+ https://medium.com/@manishbansal8843/how-i-turned-my-mi-smart-band-into-augmented-reality-watch-using-angular-5e2d0ebe2b58
 
-## Code scaffolding
+ If you own a MI smart band and want to have AR experience, you can directly visit at below link.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ https://manishbansal8843.github.io/smart-band-ar/
 
-## Build
+# For developers
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The library angular-web-bluetooth which is used to connect to BLE devices has one bug. For this, I ahve raised one issue also. further, i have opened the PR for the same. Until that is fixed, you need to fix the issue yourself post npm install.
 
-## Running unit tests
+Issue :
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+https://github.com/manekinekko/angular-web-bluetooth/issues/39
 
-## Running end-to-end tests
+Pull request:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+https://github.com/manekinekko/angular-web-bluetooth/pull/40
 
-## Further help
+Fix can be referred from above pull request. This fix needs to be applied inside the node modules at below path.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<project directory>\node_modules\@manekinekko\angular-web-bluetooth\fesm5\ manekinekko-angular-web-bluetooth.js
+
