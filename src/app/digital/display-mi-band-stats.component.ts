@@ -58,7 +58,8 @@ export class DisplayMiBandStatsComponent implements OnInit {
   showPedometerStats(value: PedoMeterResult) {
     // force change detection
     this._zone.run(() => {
-      console.log('Reading pedo results level:' + JSON.stringify(value));
+     // console.log('Reading pedo results level:' + JSON.stringify(value));
+     this.miBandService.initialPedoMeterResult=value;
       this.resultsArrived = true;
       this.pedoMeterStat = value;
     });
