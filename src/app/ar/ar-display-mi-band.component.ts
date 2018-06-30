@@ -11,14 +11,6 @@ import { timer } from 'rxjs/Observable/timer';
 })
 export class ArDisplayMiBandComponent implements OnInit {
 
-  @ViewChild('leftPlane')
-  leftPlaneEle: ElementRef;
-  @ViewChild('frontPlane')
-  frontPlaneEle: ElementRef;
-  @ViewChild('rightPlane')
-  rightPlaneEle: ElementRef;
-  @ViewChild('backPlane')
-  backPlaneEle: ElementRef;
   bleDate:string;
   days: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   months: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -37,9 +29,12 @@ export class ArDisplayMiBandComponent implements OnInit {
   }
 
   updateBLEDate(){
-    console.log('updating ble date');
+    //console.log('updating ble date');
     let today = new Date();
-    this.bleDate=''+today.getHours();//+':'+today.getMinutes()+'\n'+this.days[today.getDay()]+','+this.months[today.getMonth()]+' '+today.getDate();
+   this._zone.run(() => {
+      this.bleDate=today.getHours()+':'+today.getMinutes()+'\n'+this.days[today.getDay()]+','+this.months[today.getMonth()]+' '+today.getDate();
+
+    });
 
   }
   ngOnInit() {
@@ -48,7 +43,7 @@ export class ArDisplayMiBandComponent implements OnInit {
       this.streamValues();
       this.pedoMeterStat = this.miBandService.initialPedoMeterResult;
      
-       timer(0,5000).subscribe(this.updateBLEDate);
+       timer(2000,5000).subscribe(this.updateBLEDate.bind(this));
      
     }
   }
@@ -77,20 +72,10 @@ export class ArDisplayMiBandComponent implements OnInit {
   showPedometerStats(value: PedoMeterResult) {
     // force change detection
     this._zone.run(() => {
-      console.log('Reading pedo results level:'+JSON.stringify(value));
+     // console.log('Reading pedo results level:'+JSON.stringify(value));
       this.pedoMeterStat = value;
     });
   }
 
- /* ngDoCheck(): void {
-    let today = new Date();
-    if (this.leftPlaneEle && this.rightPlaneEle && this.backPlaneEle && this.frontPlaneEle) {
-      this.renderer.setAttribute(this.leftPlaneEle.nativeElement, 'value', `Step Count\n\n${this.pedoMeterStat.steps}`);
-      this.renderer.setAttribute(this.rightPlaneEle.nativeElement, 'value', `Calories\n\n${this.pedoMeterStat.calories}`);
-      this.renderer.setAttribute(this.backPlaneEle.nativeElement, 'value', `Distance\n\n${this.pedoMeterStat.distance}`);
-      this.renderer.setAttribute(this.frontPlaneEle.nativeElement, 'value', `${today.getHours()}:${today.getMinutes()}\n${this.days[today.getDay()]}, ${this.months[today.getMonth()]} ${today.getDate()}`);
-
-    }
-
-  }*/
+ 
 }
