@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/co
 import { PedoMeterResult } from 'src/app/PedoMeterResult';
 import { NgZone, Injector } from '@angular/core';
 import { MiBandService2Service } from 'src/app/mi-band-service-2.service';
+import { timer } from 'rxjs/Observable/timer';
 
 @Component({
   selector: 'app-ar-display-mi-band',
@@ -18,6 +19,7 @@ export class ArDisplayMiBandComponent implements OnInit {
   rightPlaneEle: ElementRef;
   @ViewChild('backPlane')
   backPlaneEle: ElementRef;
+  bleDate:string;
   days: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   months: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   pedoMeterStat: PedoMeterResult;
@@ -34,11 +36,20 @@ export class ArDisplayMiBandComponent implements OnInit {
     }
   }
 
+  updateBLEDate(){
+    console.log('updating ble date');
+    let today = new Date();
+    this.bleDate=''+today.getHours();//+':'+today.getMinutes()+'\n'+this.days[today.getDay()]+','+this.months[today.getMonth()]+' '+today.getDate();
+
+  }
   ngOnInit() {
     if (!this.bleNotSupported) {
       this.getDeviceStatus();
       this.streamValues();
       this.pedoMeterStat = this.miBandService.initialPedoMeterResult;
+     
+       timer(0,5000).subscribe(this.updateBLEDate);
+     
     }
   }
 
@@ -66,12 +77,12 @@ export class ArDisplayMiBandComponent implements OnInit {
   showPedometerStats(value: PedoMeterResult) {
     // force change detection
     this._zone.run(() => {
-      //console.log('Reading pedo results level:'+JSON.stringify(value));
+      console.log('Reading pedo results level:'+JSON.stringify(value));
       this.pedoMeterStat = value;
     });
   }
 
-  ngDoCheck(): void {
+ /* ngDoCheck(): void {
     let today = new Date();
     if (this.leftPlaneEle && this.rightPlaneEle && this.backPlaneEle && this.frontPlaneEle) {
       this.renderer.setAttribute(this.leftPlaneEle.nativeElement, 'value', `Step Count\n\n${this.pedoMeterStat.steps}`);
@@ -81,5 +92,5 @@ export class ArDisplayMiBandComponent implements OnInit {
 
     }
 
-  }
+  }*/
 }
