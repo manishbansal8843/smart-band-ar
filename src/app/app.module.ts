@@ -17,7 +17,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   imports: [
     BrowserModule,
     WebBluetoothModule.forRoot({
-      enableTracing: false 
+      //Cannot be made false. GitHub issue: https://github.com/manekinekko/angular-web-bluetooth/issues/41
+      enableTracing: true 
     }),
     AppRoutingModule
   ],
